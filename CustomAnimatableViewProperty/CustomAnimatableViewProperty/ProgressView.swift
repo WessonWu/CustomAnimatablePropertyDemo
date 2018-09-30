@@ -31,13 +31,11 @@ final class ProgressLayer: CALayer {
     }
     override func action(forKey event: String) -> CAAction? {
         if event == "progress" {
-            if let animation = super.action(forKey: "backgroundColor") as? CABasicAnimation {
+            if let animation = super.action(forKey: "opacity") as? CABasicAnimation {
                 animation.keyPath = event
                 if let pLayer = presentation() {
                     animation.fromValue = pLayer.progress
                 }
-                animation.isRemovedOnCompletion = true
-                animation.fillMode = .forwards
                 animation.toValue = nil
                 return animation
             }
